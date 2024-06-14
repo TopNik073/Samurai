@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Samurai - Профиль</title>
+    <link
+      rel="shortcut icon"
+      href="{{ url_for('static', filename='images/title_icon.ico') }}"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@1,300;1,400&family=Yellowtail&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.3.js"
+      integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles/newsline.css') }}"
+    />
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <!--HEADER-->
+      <header class="header">
+        <div class="header_container">
+          <div class="header__body">
+            <div class="header__logo">
+              <a href="{{ url_for('index') }}">Samuraй</a>
+            </div>
+            <div class="header__burger" id="hamb"><span></span></div>
+            <nav class="header__menu" id="menu">
+              <ul class="header__list">
+                <li>
+                  <a href="{{ url_for('index') }}" class="header__link"
+                    >Главная</a
+                  >
+                </li>
+                {% if not auth %}
+                <li>
+                  <a href="{{ url_for('login') }}" class="header__link"
+                    >Войти</a
+                  >
+                </li>
+                <li>
+                  <a href="{{ url_for('newlogin') }}" class="header__link"
+                    >Зарегестрироваться</a
+                  >
+                </li>
+                {% endif %} {% if auth %}
+                <li>
+                  <a href="{{ url_for('profile') }}" class="header__link"
+                    >Профиль</a
+                  >
+                </li>
+                <li>
+                  <a href="{{ url_for('logout') }}" class="header__link"
+                    >Выйти</a
+                  >
+                </li>
+                {% endif %}
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </header>
+
+      <!--MAIN-->
+      <main>
+        <div class="bg-holder">
+          <div class="cards-holder">
+            <script
+              src="https://static.elfsight.com/platform/platform.js"
+              data-use-service-core
+              defer
+            ></script>
+            <div
+              id="script"
+              class="elfsight-app-2d8fd56a-9233-4e89-b5f1-49f067bab636"
+            ></div>
+          </div>
+        </div>
+      </main>
+
+      <footer class="footer">
+        <div class="footmain">
+          <div class="textfoot">
+            <div class="aikidofoot">
+              <strong
+                >Калининградский клуб <br />
+                Айкидо и Айкибудзюцу Гендай Кан</strong
+              >
+            </div>
+          </div>
+          <div class="tgvk">
+            <div class="vk">
+              <a href="https://vk.com/samuraikld" target="_blank"
+                ><img
+                  src="{{ url_for('static', filename='images/footer/vk.svg') }}"
+              /></a>
+            </div>
+            <div class="tg">
+              <a href="https://t.me/aikibujtsu" target="_blank"
+                ><img
+                  src="{{ url_for('static', filename='images/footer/telegram.svg') }}"
+                  alt="VK"
+              /></a>
+            </div>
+          </div>
+          <div class="telmail">
+            <div class="mailfoot">
+              <a href="mailto:Samurai2885@gmail.com" type="mailto"
+                ><strong>Samurai2885@gmail.com</strong></a
+              >
+            </div>
+            <div class="telfoot">
+              <a href="tel:+79210095753" type="tel"
+                ><strong>+7 (921) 009-57-53</strong></a
+              >
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <script>
+      const hamb = document.querySelector("#hamb");
+      const menu = document.querySelector("#menu");
+      const body = document.querySelector("body");
+
+      hamb.addEventListener("click", hambHandler);
+
+      function hambHandler(e) {
+        e.preventDefault();
+        hamb.classList.toggle("active");
+        menu.classList.toggle("active");
+        body.classList.toggle("lock");
+      }
+    </script>
+  </body>
+</html>

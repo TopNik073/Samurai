@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Samurai - Главная</title>
+    <link
+      rel="shortcut icon"
+      href="{{ url_for('static', path='images/title_icon.ico') }}"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@1,300;1,400&family=Yellowtail&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.3.js"
+      integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', path='styles/main.css') }}"
+    />
+  </head>
+  <body>
+    <div class="wrapper">
+      <!--HEADER-->
+
+      <header class="header">
+        <div class="header_container">
+          <div class="header__body">
+            <div class="header__logo"><a href="#">Samuraй</a></div>
+            <div class="header__burger" id="hamb"><span></span></div>
+            <nav class="header__menu" id="menu">
+              <ul class="header__list">
+                <li>
+                  <a href="{{ url_for('newsline') }}" class="header__link"
+                    >Новости</a
+                  >
+                </li>
+                {% if not auth %}
+                <li>
+                  <a href="{{ url_for('login') }}" class="header__link"
+                    >Войти</a
+                  >
+                </li>
+                <li>
+                  <a href="{{ url_for('newlogin') }}" class="header__link"
+                    >Регистрация</a
+                  >
+                </li>
+                {% endif %} {% if auth %}
+                <li>
+                  <a href="{{ url_for('profile') }}" class="header__link"
+                    >Профиль</a
+                  >
+                </li>
+                <li>
+                  <a href="{{ url_for('logout') }}" class="header__link"
+                    >Выйти</a
+                  >
+                </li>
+                {% endif %}
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </header>
+
+      <!--CAROUSEL-->
+
+      <div class="bg-holder">
+        <div class="bg-main">
+          <div class="container-fluid img-carousel">
+            <div
+              id="carouselExampleIndicators"
+              class="carousel slide carousel-fade"
+              data-bs-ride="carousel"
+            >
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img
+                    src="{{ url_for('static', path='images/1.jpg') }}"
+                    class="d-block w-100"
+                    alt="..."
+                  />
+                  <div class="carousel-caption d-md-block">
+                    <a href="tel:+79210095753"
+                      ><h5>Запишитесь на бесплатную пробную тренировку</h5></a
+                    >
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img
+                    src="{{ url_for('static', path='images/2.jpg') }}"
+                    class="d-block w-100"
+                    alt="..."
+                  />
+                  <div class="carousel-caption d-md-block">
+                    <a href="tel:+79210095753"
+                      ><h5>Запишитесь на бесплатную пробную тренировку</h5></a
+                    >
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img
+                    src="{{ url_for('static', path='images/3.jpg') }}"
+                    class="d-block w-100"
+                    alt="..."
+                  />
+                  <div class="carousel-caption d-md-block">
+                    <a href="tel:+79210095753"
+                      ><h5>Запишитесь на бесплатную пробную тренировку</h5></a
+                    >
+                  </div>
+                </div>
+              </div>
+              <button
+                class="carousel-control-prev"
+                type="button"
+                data-bs-target="#carouselExampleIndicators"
+                data-bs-slide="prev"
+              >
+                <span
+                  class="carousel-control-prev-icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="visually-hidden">Предыдущий</span>
+              </button>
+              <button
+                class="carousel-control-next"
+                type="button"
+                data-bs-target="#carouselExampleIndicators"
+                data-bs-slide="next"
+              >
+                <span
+                  class="carousel-control-next-icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="visually-hidden">Следующий</span>
+              </button>
+            </div>
+          </div>
+
+          <!--ABOUT CLUB-->
+
+          <div class="main">
+            <div class="content mx-auto">
+              <div class="title"><h3>О нашем клубе</h3></div>
+              <div class="info">
+                <p>
+                  Калининградский клуб Айкидо Samuraй, это школа единоборств, где ваш ребенок научиться:<br>
+                  - дисциплине;<br>
+                  - философии восточных единоборств;<br>
+                  - уважению к старшим;<br>
+                  - защищать себя и других;<br>
+                  - станет сильнее физически и психологически;<br>
+                  - поучаствует в соревнованиях, научится выигрывать и проигрывать;<br>
+                  - поедет на сборы и в спортивные лагеря, поймет что это весело и интересно. <br>
+                  <br>
+                  Цель нашего клуба - вырастить здоровое поколение, которое будет интересоваться спортом, вести соответсвующий образ жизни и получать от этого удовольствие.<br>
+                  <br>
+                  Тренер нашего клуба, Миклухин Денис Александрович, имеет педагогическое образование по специальности Физкультура и Спорт (черный пояс 1 дан Реальное Айкидо, 2 дан Айкибудзюцу Гендай Кан, 1 разряд по виду спорта Айкидо). Имеет опыт более 15 лет тренировок с детьми от 3-х лет и старше.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="content mx-auto pb-4">
+            <div class="title"><h3>Расписание</h3></div>
+          </div>
+
+          <!--TABS-->
+
+          <div class="tabs">
+            <div class="tabs__nav text-center">
+              <button
+                class="tabs__btn col-lg-3 col-md-5 col-xs-12 tabs__btn_active"
+              >
+                УЛ. ВИКТОРА ДЕНИСОВА 10
+              </button>
+              <button class="tabs__btn col-lg-3 col-md-5 col-xs-12">
+                УЛ. РИМСКАЯ 33 к3
+              </button>
+              <button class="tabs__btn col-lg-3 col-md-5 col-xs-12">
+                УЛ. СОГЛАСИЯ 39
+              </button>
+            </div>
+            <div class="tabs__content">
+              <div class="tabs__pane tabs__pane_show">
+                <div class="container row mx-auto">
+                  <table class="resp-tab">
+                    <thead>
+                      <tr>
+                        <th>Группа</th>
+                        <th>Понедельник</th>
+                        <th>Вторник</th>
+                        <th>Среда</th>
+                        <th>Четверг</th>
+                        <th>Пятница</th>
+                        <th>Суббота</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="text-center">Дети от 3,5 до 6 лет</td>
+                        <td>
+                          <span>Понедельник</span>
+                          <div class="time">―</div>
+                        </td>
+                        <td>
+                          <span>Вторник</span>
+                          <div class="time">―</div>
+                        </td>
+                        <td>
+                          <span>Среда</span>
+                          <div class="time">18:00 - 19:00</div>
+                        </td>
+                        <td>
+                          <span>Четверг</span>
+                          <div class="time">―</div>
+                        </td>
+                        <td>
+                          <span>Пятница</span>
+                          <div class="time">―</div>
+                        </td>
+                        <td>
+                          <span>Суббота</span>
+                          <div class="time">10:00 - 11:00</div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">
+                          Дети от 6 до 8 лет и жёлтые пояса
+                        </td>
+                        <td>
+                          <span>Понедельник</span>
+                          <div class="time">―</div>
+                        </td>
+                        <td>
+                          <span>Вторник</span>
+                          <div class="time">―</div>
+                        </td>
+                        <td>
+                          <span>Среда</span>
+                          <div class="time">19:00 - 20:00</div>
+                        </td>
+                        <td>
+                          <span>Четверг</span>
+                          <div class="time">―</div>
+                        </td>
+                        <td>
+                          <span>Пятница</span>
+                          <div class="time">―</div>
+                        </td>
+                        <td>
+                          <span>Суббота</span>
+                          <div class="time">11:00 - 12:00</div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Старшие пояса</td>
+                        <td>
+                          <span>Понедельник</span>
+                          <div class="time">―</div>
+                        </td>
+                        <td>
+                          <span>Вторник</span>
+                          <div class="time">―</div>
+                        </td>
+                        <td>
+                          <span>Среда</span>
+                          <div class="time">20:00 - 21:00</div>
+                        </td>
+                        <td>
+                          <span>Четверг</span>
+                          <div class="time">―</div>
+                        </td>
+                        <td>
+                          <span>Пятница</span>
+                          <div class="time">―</div>
+                        </td>
+                        <td>
+                          <span>Суббота</span>
+                          <div class="time">12:00 - 13:00</div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Взрослые</td>
+                        <td>
+                          <span>Понедельник</span>
+                          <div class="time">20:45 - 22:00</div>
+                        </td>
+                        <td>
+                          <span>Вторник</span>
+                          <div class="time">―</div>
+                        </td>
+                        <td>
+                          <span>Среда</span>
+                          <div class="time">20:45 - 22:00</div>
+                        </td>
+                        <td>
+                          <span>Четверг</span>
+                          <div class="time">―</div>
+                        </td>
+                        <td>
+                          <span>Пятница</span>
+                          <div class="time">20:45 - 22:00</div>
+                        </td>
+                        <td>
+                          <span>Суббота</span>
+                          <div class="time">―</div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div class="tabs__pane">
+                <div class="container row mx-auto">
+                  <table class="resp-tab">
+                    <thead>
+                      <tr>
+                        <th>Группа</th>
+                        <th>Понедельник</th>
+                        <th>Вторник</th>
+                        <th>Среда</th>
+                        <th>Четверг</th>
+                        <th>Пятница</th>
+                        <th>Суббота</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="text-center">Дети от 3 до 5 лет</td>
+                        <td>
+                          <span>Понедельник</span>
+                          <div class="time">18:00 - 19:00</div>
+                        </td>
+                        <td>
+                          <span>Вторник</span>
+                          <div class="time">―</div>
+                        </td>
+                        <td>
+                          <span>Среда</span>
+                          <div class="time">―</div>
+                        </td>
+                        <td>
+                          <span>Четверг</span>
+                          <div class="time">―</div>
+                        </td>
+                        <td>
+                          <span>Пятница</span>
+                          <div class="time">18:00 - 19:00</div>
+                        </td>
+                        <td>
+                          <span>Суббота</span>
+                          <div class="time">―</div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Дети от 6 до 8 лет</td>
+                        <td>
+                          <span>Понедельник</span>
+                          <div class="time">19:00 - 20:00</div>
+                        </td>
+                        <td>
+                          <span>Вторник</span>
+                          <div class="time">―</div>
+                        </td>
+                        <td>
+                          <span>Среда</span>
+                          <div class="time">―</div>
+                        </td>
+                        <td>
+                          <span>Четверг</span>
+                          <div class="time">―</div>
+                        </td>
+                        <td>
+                          <span>Пятница</span>
+                          <div class="time">19:00 - 20:00</div>
+                        </td>
+                        <td>
+                          <span>Суббота</span>
+                          <div class="time">―</div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Дети от 9 до 13 лет</td>
+                        <td>
+                          <span>Понедельник</span>
+                          <div class="time">20:00 - 21:00</div>
+                        </td>
+                        <td>
+                          <span>Вторник</span>
+                          <div class="time">―</div>
+                        </td>
+                        <td>
+                          <span>Среда</span>
+                          <div class="time">―</div>
+                        </td>
+                        <td>
+                          <span>Четверг</span>
+                          <div class="time">―</div>
+                        </td>
+                        <td>
+                          <span>Пятница</span>
+                          <div class="time">20:00 - 21:00</div>
+                        </td>
+                        <td>
+                          <span>Суббота</span>
+                          <div class="time">―</div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div class="tabs__pane" id="content-3">
+                <div class="container row mx-auto">
+                  <table class="resp-tab">
+                    <thead>
+                      <tr>
+                        <th>Группа</th>
+                        <th>Понедельник</th>
+                        <th>Вторник</th>
+                        <th>Среда</th>
+                        <th>Четверг</th>
+                        <th>Пятница</th>
+                        <th>Суббота</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="text-center">От 3 до 6 лет и белые пояса</td>
+                        <td>
+                          <span>Понедельник</span>
+                          <div class="time">―</div>
+                        </td>
+                        <td>
+                          <span>Вторник</span>
+                          <div class="time">18:30 - 19:15</div>
+                        </td>
+                        <td>
+                          <span>Среда</span>
+                          <div class="time">―</div>
+                        </td>
+                        <td>
+                          <span>Четверг</span>
+                          <div class="time">18:30 - 19:15</div>
+                        </td>
+                        <td>
+                          <span>Пятница</span>
+                          <div class="time">―</div>
+                        </td>
+                        <td>
+                          <span>Суббота</span>
+                          <div class="time">18:30 - 19:15</div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">
+                          От 7 до 13 лет и старшие пояса
+                        </td>
+                        <td>
+                          <span>Понедельник</span>
+                          <div class="time">―</div>
+                        </td>
+                        <td>
+                          <span>Вторник</span>
+                          <div class="time">19:15 - 20:15</div>
+                        </td>
+                        <td>
+                          <span>Среда</span>
+                          <div class="time">―</div>
+                        </td>
+                        <td>
+                          <span>Четверг</span>
+                          <div class="time">19:15 - 20:15</div>
+                        </td>
+                        <td>
+                          <span>Пятница</span>
+                          <div class="time">―</div>
+                        </td>
+                        <td>
+                          <span>Суббота</span>
+                          <div class="time">―</div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Взрослые</td>
+                        <td>
+                          <span>Понедельник</span>
+                          <div class="time">―</div>
+                        </td>
+                        <td>
+                          <span>Вторник</span>
+                          <div class="time">20:15 - 21:15</div>
+                        </td>
+                        <td>
+                          <span>Среда</span>
+                          <div class="time">―</div>
+                        </td>
+                        <td>
+                          <span>Четверг</span>
+                          <div class="time">20:15 - 21:15</div>
+                        </td>
+                        <td>
+                          <span>Пятница</span>
+                          <div class="time">―</div>
+                        </td>
+                        <td>
+                          <span>Суббота</span>
+                          <div class="time">20:15 - 21:15</div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <!--tabs__content close-->
+          </div>
+          <!--tabs close-->
+
+          <!--Map-->
+
+          <div class="map-container">
+            <iframe
+              id="map_530552718"
+              frameborder="0"
+              width="100%"
+              height="100%"
+              sandbox="allow-modals allow-forms allow-scripts allow-same-origin allow-popups allow-top-navigation-by-user-activation"
+            ></iframe>
+            <script type="text/javascript">
+              (function (e, t) {
+                var r = document.getElementById(e);
+                r.contentWindow.document.open(),
+                  r.contentWindow.document.write(atob(t)),
+                  r.contentWindow.document.close();
+              })(
+                "map_530552718",
+                "PGJvZHk+PHN0eWxlPgogICAgICAgIGh0bWwsIGJvZHkgewogICAgICAgICAgICBtYXJnaW46IDA7CiAgICAgICAgICAgIHBhZGRpbmc6IDA7CiAgICAgICAgfQogICAgICAgIGh0bWwsIGJvZHksICNtYXAgewogICAgICAgICAgICB3aWR0aDogMTAwJTsKICAgICAgICAgICAgaGVpZ2h0OiAxMDAlOwogICAgICAgIH0KICAgICAgICAuYnVsbGV0LW1hcmtlciB7CiAgICAgICAgICAgIHdpZHRoOiAyMHB4OwogICAgICAgICAgICBoZWlnaHQ6IDIwcHg7CiAgICAgICAgICAgIGJveC1zaXppbmc6IGJvcmRlci1ib3g7CiAgICAgICAgICAgIGJhY2tncm91bmQtY29sb3I6ICNmZmY7CiAgICAgICAgICAgIGJveC1zaGFkb3c6IDAgMXB4IDNweCAwIHJnYmEoMCwgMCwgMCwgMC4yKTsKICAgICAgICAgICAgYm9yZGVyOiA0cHggc29saWQgIzAyODFmMjsKICAgICAgICAgICAgYm9yZGVyLXJhZGl1czogNTAlOwogICAgICAgIH0KICAgICAgICAucGVybWFuZW50LXRvb2x0aXAgewogICAgICAgICAgICBiYWNrZ3JvdW5kOiBub25lOwogICAgICAgICAgICBib3gtc2hhZG93OiBub25lOwogICAgICAgICAgICBib3JkZXI6IG5vbmU7CiAgICAgICAgICAgIHBhZGRpbmc6IDZweCAxMnB4OwogICAgICAgICAgICBjb2xvcjogIzI2MjYyNjsKICAgICAgICB9CiAgICAgICAgLnBlcm1hbmVudC10b29sdGlwOmJlZm9yZSB7CiAgICAgICAgICAgIGRpc3BsYXk6IG5vbmU7CiAgICAgICAgfQogICAgICAgIC5kZy1wb3B1cF9oaWRkZW5fdHJ1ZSB7CiAgICAgICAgICAgIGRpc3BsYXk6IGJsb2NrOwogICAgICAgIH0KICAgICAgICAubGVhZmxldC1jb250YWluZXIgLmxlYWZsZXQtcG9wdXAgLmxlYWZsZXQtcG9wdXAtY2xvc2UtYnV0dG9uIHsKICAgICAgICAgICAgdG9wOiAwOwogICAgICAgICAgICByaWdodDogMDsKICAgICAgICAgICAgd2lkdGg6IDIwcHg7CiAgICAgICAgICAgIGhlaWdodDogMjBweDsKICAgICAgICAgICAgZm9udC1zaXplOiAyMHB4OwogICAgICAgICAgICBsaW5lLWhlaWdodDogMTsKICAgICAgICB9CiAgICA8L3N0eWxlPjxkaXYgaWQ9Im1hcCI+PC9kaXY+PHNjcmlwdCB0eXBlPSJ0ZXh0L2phdmFzY3JpcHQiIHNyYz0iaHR0cHM6Ly9tYXBzLmFwaS4yZ2lzLnJ1LzIuMC9sb2FkZXIuanM/cGtnPWZ1bGwmYW1wO3NraW49bGlnaHQiPjwvc2NyaXB0PjxzY3JpcHQ+KGZ1bmN0aW9uKGUpe3ZhciB0PUpTT04ucGFyc2UoZSkscj10Lm9yZGVyZWRHZW9tZXRyaWVzLG49dC5tYXBQb3NpdGlvbixhPXQuaXNXaGVlbFpvb21FbmFibGVkO2Z1bmN0aW9uIG8oZSl7cmV0dXJuIGRlY29kZVVSSUNvbXBvbmVudChhdG9iKGUpLnNwbGl0KCIiKS5tYXAoZnVuY3Rpb24oZSl7cmV0dXJuIiUiKygiMDAiK2UuY2hhckNvZGVBdCgwKS50b1N0cmluZygxNikpLnNsaWNlKC0yKX0pLmpvaW4oIiIpKX1ERy50aGVuKGZ1bmN0aW9uKCl7dmFyIGU9REcubWFwKCJtYXAiLHtjZW50ZXI6W24ubGF0LG4ubG9uXSx6b29tOm4uem9vbSxzY3JvbGxXaGVlbFpvb206YSx6b29tQ29udHJvbDohYX0pO0RHLmdlb0pTT04ocix7c3R5bGU6ZnVuY3Rpb24oZSl7dmFyIHQscixuLGEsbztyZXR1cm57ZmlsbENvbG9yOm51bGw9PT0odD1lKXx8dm9pZCAwPT09dD92b2lkIDA6dC5wcm9wZXJ0aWVzLmZpbGxDb2xvcixmaWxsT3BhY2l0eTpudWxsPT09KHI9ZSl8fHZvaWQgMD09PXI/dm9pZCAwOnIucHJvcGVydGllcy5maWxsT3BhY2l0eSxjb2xvcjpudWxsPT09KG49ZSl8fHZvaWQgMD09PW4/dm9pZCAwOm4ucHJvcGVydGllcy5zdHJva2VDb2xvcix3ZWlnaHQ6bnVsbD09PShhPWUpfHx2b2lkIDA9PT1hP3ZvaWQgMDphLnByb3BlcnRpZXMuc3Ryb2tlV2lkdGgsb3BhY2l0eTpudWxsPT09KG89ZSl8fHZvaWQgMD09PW8/dm9pZCAwOm8ucHJvcGVydGllcy5zdHJva2VPcGFjaXR5fX0scG9pbnRUb0xheWVyOmZ1bmN0aW9uKGUsdCl7cmV0dXJuInJhZGl1cyJpbiBlLnByb3BlcnRpZXM/REcuY2lyY2xlKHQsZS5wcm9wZXJ0aWVzLnJhZGl1cyk6REcubWFya2VyKHQse2ljb246ZnVuY3Rpb24oZSl7cmV0dXJuIERHLmRpdkljb24oe2h0bWw6IjxkaXYgY2xhc3M9J2J1bGxldC1tYXJrZXInIHN0eWxlPSdib3JkZXItY29sb3I6ICIrZSsiOyc+PC9kaXY+IixjbGFzc05hbWU6Im92ZXJyaWRlLWRlZmF1bHQiLGljb25TaXplOlsyMCwyMF0saWNvbkFuY2hvcjpbMTAsMTBdfSl9KGUucHJvcGVydGllcy5jb2xvcil9KX0sb25FYWNoRmVhdHVyZTpmdW5jdGlvbihlLHQpe2UucHJvcGVydGllcy5kZXNjcmlwdGlvbiYmdC5iaW5kUG9wdXAobyhlLnByb3BlcnRpZXMuZGVzY3JpcHRpb24pLHtjbG9zZUJ1dHRvbjohMCxjbG9zZU9uRXNjYXBlS2V5OiEwfSksZS5wcm9wZXJ0aWVzLnRpdGxlJiZ0LmJpbmRUb29sdGlwKG8oZS5wcm9wZXJ0aWVzLnRpdGxlKSx7cGVybWFuZW50OiEwLG9wYWNpdHk6MSxjbGFzc05hbWU6InBlcm1hbmVudC10b29sdGlwIn0pfX0pLmFkZFRvKGUpfSl9KSgneyJvcmRlcmVkR2VvbWV0cmllcyI6W3sidHlwZSI6IkZlYXR1cmUiLCJwcm9wZXJ0aWVzIjp7InRpdGxlIjoiVTJGdGRYSmhhUT09IiwiZGVzY3JpcHRpb24iOiJQSEErMFlQUXV5NGcwSkxRdU5DNjBZTFF2dEdBMExBZzBKVFF0ZEM5MExqUmdkQyswTExRc0NBeE1Ed3ZjRDQ9IiwiY29sb3IiOiIjZmYwMDAwIiwiekluZGV4IjoxMDAwMDAwMDAwfSwiZ2VvbWV0cnkiOnsidHlwZSI6IlBvaW50IiwiY29vcmRpbmF0ZXMiOlsyMC41ODA1NTgsNTQuNzE0MDM4XX0sImlkIjo3NTB9LHsidHlwZSI6IkZlYXR1cmUiLCJwcm9wZXJ0aWVzIjp7InRpdGxlIjoiVTJGdGRYSmhhUT09IiwiZGVzY3JpcHRpb24iOiJQSEErMFlQUXV5NGcwS0RRdU5DODBZSFF1dEN3MFk4Z016TWcwTG96UEM5d1BnPT0iLCJjb2xvciI6IiNmZjAwMDAiLCJ6SW5kZXgiOjEwMDAwMDAwMDB9LCJnZW9tZXRyeSI6eyJ0eXBlIjoiUG9pbnQiLCJjb29yZGluYXRlcyI6WzIwLjUzNzE4Niw1NC43MjMzMTRdfSwiaWQiOjExNzF9LHsidHlwZSI6IkZlYXR1cmUiLCJwcm9wZXJ0aWVzIjp7InRpdGxlIjoiVTJGdGRYSmhhUT09IiwiZGVzY3JpcHRpb24iOiJQSEErMFlQUXV5NGcwS0hRdnRDejBMdlFzTkdCMExqUmp5QXpPVHd2Y0Q0PSIsImNvbG9yIjoiI2ZmMDAwMCIsInpJbmRleCI6MTAwMDAwMDAwMH0sImdlb21ldHJ5Ijp7InR5cGUiOiJQb2ludCIsImNvb3JkaW5hdGVzIjpbMjAuNDg1MjMyLDU0Ljc1MDI4NF19LCJpZCI6MjA4OH1dLCJtYXBQb3NpdGlvbiI6eyJsYXQiOjU0LjcyNzk5MDY2NjAyOTExNSwibG9uIjoyMC41MzQ5OTIyMTgwMTc1OCwiem9vbSI6MTJ9LCJpc1doZWVsWm9vbUVuYWJsZWQiOnRydWV9Jyk8L3NjcmlwdD48c2NyaXB0IGFzeW5jPSIiIHR5cGU9InRleHQvamF2YXNjcmlwdCIgc3JjPSJodHRwczovL3d3dy5nb29nbGV0YWdtYW5hZ2VyLmNvbS9ndGFnL2pzP2lkPVVBLTE1ODg2NjE2OC0xIj48L3NjcmlwdD48c2NyaXB0IHR5cGU9InRleHQvamF2YXNjcmlwdCI+KGZ1bmN0aW9uKGUpe2Z1bmN0aW9uIHQoKXtkYXRhTGF5ZXIucHVzaChhcmd1bWVudHMpfXdpbmRvdy5kYXRhTGF5ZXI9d2luZG93LmRhdGFMYXllcnx8W10sdCgianMiLG5ldyBEYXRlKSx0KCJjb25maWciLGUpLHdpbmRvdy5ndGFnPXR9KSgnVUEtMTU4ODY2MTY4LTEnKTwvc2NyaXB0PjwvYm9keT4="
+              );
+            </script>
+          </div>
+        </div>
+        <footer>
+          <div class="footmain">
+            <div class="textfoot">
+              <div class="aikidofoot">
+                <strong
+                  >Калининградский клуб <br />
+                  Айкидо и Айкибудзюцу Гендай Кан</strong
+                >
+              </div>
+            </div>
+            <div class="tgvk">
+              <div class="vk">
+                <a href="https://vk.com/samuraikld" target="_blank"
+                  ><img
+                    src="{{ url_for('static', path='images/footer/vk.svg') }}"
+                /></a>
+              </div>
+              <div class="tg">
+                <a href="https://t.me/aikibujtsu" target="_blank"
+                  ><img
+                    src="{{ url_for('static', path='images/footer/telegram.svg') }}"
+                    alt="VK"
+                /></a>
+              </div>
+            </div>
+            <div class="telmail">
+              <div class="mailfoot">
+                <a href="mailto:Samurai2885@gmail.com" type="mailto"
+                  ><strong>Samurai2885@gmail.com</strong></a
+                >
+              </div>
+              <div class="telfoot">
+                <a href="tel:+79210095753" type="tel"
+                  ><strong>+7 (921) 009-57-53</strong></a
+                >
+              </div>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+    <!--wrapper close-->
+    <!--HEADER SCRIPT-->
+    <script>
+      const hamb = document.querySelector("#hamb");
+      const menu = document.querySelector("#menu");
+      const body = document.querySelector("body");
+  
+      hamb.addEventListener("click", hambHandler);
+  
+      function hambHandler(e) {
+        e.preventDefault();
+        hamb.classList.toggle("active");
+        menu.classList.toggle("active");
+        body.classList.toggle("lock");
+      }
+    </script>
+    <script>
+      class ItcTabs {
+        constructor(target, config) {
+          const defaultConfig = {};
+          this._config = Object.assign(defaultConfig, config);
+          this._elTabs =
+            typeof target === "string"
+              ? document.querySelector(target)
+              : target;
+          this._elButtons = this._elTabs.querySelectorAll(".tabs__btn");
+          this._elPanes = this._elTabs.querySelectorAll(".tabs__pane");
+          this._eventShow = new Event("tab.itc.change");
+          this._init();
+          this._events();
+        }
+        _init() {
+          this._elTabs.setAttribute("role", "tablist");
+          this._elButtons.forEach((el, index) => {
+            el.dataset.index = index;
+            el.setAttribute("role", "tab");
+            this._elPanes[index].setAttribute("role", "tabpanel");
+          });
+        }
+        show(elLinkTarget) {
+          const elPaneTarget = this._elPanes[elLinkTarget.dataset.index];
+          const elLinkActive = this._elTabs.querySelector(".tabs__btn_active");
+          const elPaneShow = this._elTabs.querySelector(".tabs__pane_show");
+          if (elLinkTarget === elLinkActive) {
+            return;
+          }
+          elLinkActive
+            ? elLinkActive.classList.remove("tabs__btn_active")
+            : null;
+          elPaneShow ? elPaneShow.classList.remove("tabs__pane_show") : null;
+          elLinkTarget.classList.add("tabs__btn_active");
+          elPaneTarget.classList.add("tabs__pane_show");
+          this._elTabs.dispatchEvent(this._eventShow);
+          elLinkTarget.focus();
+        }
+        showByIndex(index) {
+          const elLinkTarget = this._elButtons[index];
+          elLinkTarget ? this.show(elLinkTarget) : null;
+        }
+        _events() {
+          this._elTabs.addEventListener("click", (e) => {
+            const target = e.target.closest(".tabs__btn");
+            if (target) {
+              e.preventDefault();
+              this.show(target);
+            }
+          });
+        }
+      }
+
+      // инициализация .tabs как табов
+      new ItcTabs(".tabs");
+    </script>
+
+    <script>
+      $(document).ready(function () {
+        function checkWidth() {
+          var windowWidth = $("body").innerWidth(),
+            elem = $(".time");
+
+          if (windowWidth < 2000) {
+            elem.removeClass("text-center");
+            elem.addClass("text-end");
+          } else {
+            elem.removeClass("text-end");
+            elem.addClass("text-center");
+          }
+        }
+
+        checkWidth();
+
+        $(window).resize(function () {
+          checkWidth();
+        });
+      });
+    </script>
+  </body>
+</html>
