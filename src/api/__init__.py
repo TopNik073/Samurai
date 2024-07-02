@@ -1,6 +1,6 @@
-from api.businesses import router as router_businesses
-from api.users import router as router_users
-from api.admins import router as router_admins
-from OAuth.Manager import router as router_oauth
+from src.api.businesses import router as router_businesses
+from src.api.users import router as router_users
+from src.api.admins import router as router_admins
+
 
 api_routers = [router_businesses, router_users, router_admins]
