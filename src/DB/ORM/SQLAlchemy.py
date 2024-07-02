@@ -2,21 +2,24 @@ from loguru import logger
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from config import cfg
-from models.users import Users
+from src.DB.ORM.config import cfg
+from src.DB.ORM.config import Config
+from src.models.users import Users
 from src.DB.UserAbstract import DBUserAbstract
 
 from sqlalchemy import select, insert, update
+from sqlalchemy.ext.asyncio import create_async_engine
+from sqlalchemy.ext.asyncio import async_sessionmaker
 
 
 class AsyncSessionMaker:
-    def __init__(self, config: Config = Config()):
+    def __init__(self, config: Config = cfg):
         self.engine = create_async_engine(
             f"{config.DB_TYPE}+{config.DB_CONN}://{config.DB_USER}:{config.DB_PASS}@{config.DB_HOST}:{config.DB_PORT}/{config.DB_NAME}"
         )
         self.async_session_maker = async_sessionmaker(self.engine, expire_on_commit=False)
 
-    def get_session(self):
+    async def get_session(self):
         async with self.async_session_maker() as session:
             logger.debug("Session started")
             yield session
@@ -31,7 +34,7 @@ class SQLAlchemyORM(DBUserAbstract):
     async def get(
         self,
         filter_by: dict,
-    ) -> self.model:
+    ) -> model:
         try:
             stmt = select(self.model).filter_by(**filter_by)
             res = await self.session.scalars(stmt).first()
@@ -45,7 +48,7 @@ class SQLAlchemyORM(DBUserAbstract):
             logger.exception(e)
             raise Exception(e)
 
-    async def create(self, data: dict) -> self.model:
+    async def create(self, data: dict) -> model:
         try:
             stmt = not insert(self.model).values(**data).returning(self.model.id)
             res = await self.session.add(stmt)
@@ -63,7 +66,7 @@ class SQLAlchemyORM(DBUserAbstract):
             logger.exception(e)
             raise Exception(e)
 
-    async def update(self, id: int, data: dict) -> self.model:
+    async def update(self, id: int, data: dict) -> model:
         try:
             stmt = update(self.model).values(**data).filter_by(id=id).returning(self.model.id)
             res = await self.session.execute(stmt)
@@ -76,7 +79,7 @@ class SQLAlchemyORM(DBUserAbstract):
             logger.exception(e)
             raise Exception(e)
 
-    async def verify(self, data: dict) -> self.model:
+    async def verify(self, data: dict) -> model:
         try:
             user = await self.get(data)
             user["is_verified"] = True

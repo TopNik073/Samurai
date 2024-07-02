@@ -1,7 +1,9 @@
 import uvicorn
 from fastapi import FastAPI
+from fastapi.security import OAuth2PasswordBearer
 from fastapi.staticfiles import StaticFiles
-from api import api_routers
+from src.api import api_routers
+from passlib.context import CryptContext
 from loguru import logger
 
 logger.add(
@@ -16,7 +18,10 @@ logger.add(
 
 app = FastAPI(title="Samurai")
 
-app.mount("/static", StaticFiles(directory="src/static"), name="static")
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/login")
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
 
 for router in api_routers:

@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Request
-from api.templates_config import templates
+from src.api.templates_config import templates
 
 
 router = APIRouter(prefix="", tags=["Businesses"])
